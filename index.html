@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>走るな、漏れる</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- スタート画面 -->
+    <div id="start-screen">
+        <div id="start-content">
+            <h1>走るな、漏れる</h1>
+            <p>恐怖のトイレダッシュゲーム</p>
+            <div id="game-instructions">
+                <h3>ストーリー</h3>
+                <p>奇妙な旅館に泊まったあなたは、夜尿意を催す</p>
+                <h3>遊び方</h3>
+                <ul>
+                    <li>🚶 歩行/🏃 走行を切り替えて移動</li>
+                    <li>😫 我慢ボタンで限界ゲージの上昇を抑制</li>
+                    <li>🔀 ルート分岐で近道か安全な道を選択</li>
+                </ul>
+            </div>
+            <button id="start-game-btn">ゲーム開始</button>
+        </div>
+    </div>
+
+    <div id="game-container" class="hidden">
+        <div id="scene-image" style="background-image: url('images/corridor_start.png');">
+            <div id="hotspot-area">
+                </div>
+            <div id="horror-overlay"></div>
+        </div>
+
+        <div id="ui-panel">
+            
+            <div id="gauge-container">
+                <div class="gauge-box">
+                    <label>限界ゲージ (切迫度)</label>
+                    <div id="bladder-gauge" class="gauge">
+                        <div id="bladder-fill" class="fill"></div>
+                    </div>
+                </div>
+                <div class="gauge-box">
+                    <label>心拍数 (恐怖度)</label>
+                    <div id="heart-gauge" class="gauge">
+                        <div id="heart-fill" class="fill"></div>
+                    </div>
+                </div>
+                <div class="gauge-box">
+                    <label>移動進行度</label>
+                    <div id="move-gauge" class="gauge">
+                        <div id="move-fill" class="fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="scene-info">
+                <p id="scene-text">薄暗い廊下だ。トイレはあの突き当りのようだ。</p>
+            </div>
+
+            <button id="speed-toggle">現在：歩行中 (タップで走行)</button>
+        </div>
+
+        <button id="patience-button">
+            😫 我慢する！ 😫
+        </button>
+    </div>
+
+    <div id="branch-modal" class="hidden">
+        <div id="branch-content">
+            <h2>ルート分岐</h2>
+            <p id="branch-text">どちらのルートに進みますか？</p>
+            <button id="option-a" class="branch-btn">A: 近道（高リスク）</button>
+            <button id="option-b" class="branch-btn">B: 遠回り（低リスク）</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

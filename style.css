@@ -1,0 +1,282 @@
+/* style.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow: hidden;
+    touch-action: manipulation; /* スマホ操作の遅延防止 */
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+/* --- シーン描画エリア --- */
+#scene-image {
+    width: 100%;
+    height: 70vh; /* 画面の上部を占める */
+    background-size: cover;
+    background-position: center;
+    image-rendering: optimizeSpeed; /* 画像の読み込み速度優先 */
+    position: relative;
+    border-bottom: 2px solid #333;
+}
+
+/* ホットスポットエリア (クリック可能領域) */
+#hotspot-area {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* --- UIパネル --- */
+#ui-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #111;
+    border-top: 2px solid #444;
+}
+
+/* シーン情報表示エリア */
+#scene-info {
+    flex: 1;
+    margin: 0 20px;
+    max-width: 300px;
+}
+
+#scene-text {
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 0;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    border: 1px solid #555;
+    text-align: center;
+}
+
+/* ゲージスタイル */
+.gauge-box {
+    margin-right: 20px;
+}
+
+.gauge {
+    width: 150px;
+    height: 15px;
+    background-color: #333;
+    border: 1px solid #777;
+    overflow: hidden;
+    position: relative;
+}
+
+.fill {
+    height: 100%;
+    width: 0%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: width 0.1s ease;
+}
+
+#bladder-fill { 
+    background-color: red; 
+}
+
+#heart-fill { 
+    background-color: purple; 
+}
+
+#move-fill {
+    background: linear-gradient(90deg, #4CAF50, #81C784);
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+#move-gauge {
+    border: 2px solid #388E3C;
+    background-color: #1a1a1a; /* より暗い背景で見やすく */
+}
+
+/* 速度切り替えボタン */
+#speed-toggle {
+    padding: 10px 15px;
+    background-color: #333;
+    color: #fff;
+    border: 2px solid #aaa;
+    cursor: pointer;
+}
+
+/* --- 我慢ボタン --- */
+#patience-button {
+    width: 100%;
+    height: 30vh; /* 画面下部を占める */
+    background-color: #222;
+    color: yellow;
+    font-size: 3em;
+    border: none;
+    cursor: pointer;
+    touch-action: manipulation; /* スマホでの連打を可能にする */
+    transition: background-color 0.1s;
+}
+#patience-button:active {
+    background-color: #444; /* 押した時のフィードバック */
+}
+
+/* --- ホラー演出 --- */
+#horror-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0); /* 初期は透明 */
+    pointer-events: none;
+    transition: background-color 0.5s, filter 0.2s;
+}
+.red-flash {
+    background-color: rgba(255, 0, 0, 0.3) !important;
+}
+.green-flash {
+    background-color: rgba(76, 175, 80, 0.2) !important;
+}
+.glitch {
+    filter: blur(2px) hue-rotate(90deg); /* パニック時の画面エフェクト例 */
+}
+
+/* --- ルート分岐モーダル --- */
+#branch-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#branch-content {
+    background-color: #222;
+    padding: 30px;
+    border: 3px solid darkred;
+    text-align: center;
+    border-radius: 10px;
+    max-width: 400px;
+}
+
+.branch-btn {
+    display: block;
+    width: 100%;
+    padding: 15px 30px;
+    margin: 10px 0;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #333;
+    color: white;
+    border: 2px solid #666;
+    border-radius: 5px;
+}
+
+.branch-btn:hover {
+    background-color: #444;
+    border-color: #888;
+}
+
+.hidden { 
+    display: none !important; 
+}
+
+/* --- スタート画面 --- */
+#start-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./images/title_screen_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+#start-content {
+    text-align: center;
+    color: white;
+    max-width: 500px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    border: 3px solid #444;
+}
+
+#start-content h1 {
+    font-size: 3em;
+    margin: 0 0 20px 0;
+    color: #ff4444;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+#start-content p {
+    font-size: 1.2em;
+    margin: 0 0 30px 0;
+    color: #ccc;
+}
+
+#game-instructions {
+    text-align: left;
+    margin: 30px 0;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+#game-instructions h3 {
+    color: #ff4444;
+    margin: 0 0 15px 0;
+    text-align: center;
+}
+
+#game-instructions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#game-instructions li {
+    margin: 10px 0;
+    padding: 5px 0;
+    font-size: 1em;
+    color: #ddd;
+}
+
+#start-game-btn {
+    padding: 15px 30px;
+    font-size: 1.3em;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+#start-game-btn:hover {
+    background-color: #ff6666;
+}
